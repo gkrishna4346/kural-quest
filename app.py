@@ -7,7 +7,7 @@ import pandas as pd
 # -----------------
 
 st.set_page_config(
-    page_title="Kural Quest",
+    page_title="குறள் தேடல் (Kural Quest)",
     page_icon="📖",
     layout="centered"
 )
