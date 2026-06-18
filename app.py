@@ -1,22 +1,20 @@
 import streamlit as st
 import pandas as pd
 
+
 # -----------------
-
 # PAGE CONFIG
-
 # -----------------
 
 st.set_page_config(
-page_title="Kural Quest",
-page_icon="📖",
-layout="centered"
+    page_title="Kural Quest",
+    page_icon="📖",
+    layout="centered"
 )
 
+
 # -----------------
-
 # LOAD DATA
-
 # -----------------
 
 @st.cache_data
@@ -40,42 +38,49 @@ except:
 
 
 # -----------------
-
 # HEADER
-
 # -----------------
 
-st.title("📖 Kural Quest")
+left_header, right_header = st.columns([4, 1])
 
-st.caption(
-"Explore the wisdom of Thirukkural"
-)
+with left_header:
+
+    st.title("📖 Kural Quest")
+
+    st.caption(
+        "Explore the wisdom of Thirukkural"
+    )
+
+with right_header:
+
+    st.image(
+        "images/logo.png",
+        width=140
+    )
 
 st.divider()
 
-# -----------------
 
+# -----------------
 # SEARCH
-
 # -----------------
 
-left, right = st.columns([3,1])
+left, right = st.columns([3, 1])
 
 with left:
 
-
     kural_num = st.number_input(
-    "Kural Number",
-    min_value=1,
-    max_value=1330,
-    value=1
-)
+        "Kural Number",
+        min_value=1,
+        max_value=1330,
+        value=1
+    )
 
 
 with right:
 
-
     st.write("")
+
 
 search = st.button(
     "🔍 Search",
@@ -84,9 +89,7 @@ search = st.button(
 
 
 # -----------------
-
 # RESULTS
-
 # -----------------
 
 if search:
@@ -98,68 +101,68 @@ if search:
     if row.empty:
 
         st.warning(
-        "Kural not found"
+            "Kural not found"
         )
 
     else:
 
         r = row.iloc[0]
 
-    c1, c2 = st.columns(2)
+        c1, c2 = st.columns(2)
 
-    with c1:
+        with c1:
+
+            st.text_input(
+                "Section Name",
+                str(r["Section Name"]),
+                disabled=True
+            )
+
+        with c2:
+
+            st.text_input(
+                "Chapter Number",
+                str(r["Chapter Number"]),
+                disabled=True
+            )
 
         st.text_input(
-            "Section Name",
-            str(r["Section Name"]),
+            "Chapter Name",
+            str(r["Chapter Name"]),
             disabled=True
         )
 
-    with c2:
+        st.subheader("📜 Kural")
 
-        st.text_input(
-            "Chapter Number",
-            str(r["Chapter Number"]),
-            disabled=True
+        st.text_area(
+            "",
+            str(r["Kural"]),
+            height=120
         )
 
-    st.text_input(
-        "Chapter Name",
-        str(r["Chapter Name"]),
-        disabled=True
-    )
+        st.subheader(
+            "🌍 Translation"
+        )
 
-    st.subheader("📜 Kural")
+        st.text_area(
+            "",
+            str(r["Translation"]),
+            height=150
+        )
 
-    st.text_area(
-        "",
-        str(r["Kural"]),
-        height=120
-    )
+        st.subheader(
+            "💡 Explanation"
+        )
 
-    st.subheader(
-        "🌍 Translation"
-    )
-
-    st.text_area(
-        "",
-        str(r["Translation"]),
-        height=150
-    )
-
-    st.subheader(
-        "💡 Explanation"
-    )
-
-    st.text_area(
-        "",
-        str(r["Explanation"]),
-        height=220
-    )
+        st.text_area(
+            "",
+            str(r["Explanation"]),
+            height=220
+        )
 
 
 st.divider()
 
 st.caption(
-"Created by Gopikrishna"
+    "Created by Gopikrishna"
 )
