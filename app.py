@@ -45,7 +45,7 @@ left_header, right_header = st.columns([4, 1])
 
 with left_header:
 
-    st.title("📖 Kural Quest")
+    st.title("குறள் தேடல் (Kural Quest)")
 
     st.caption(
         "Explore the wisdom of Thirukkural"
